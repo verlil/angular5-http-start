@@ -17,4 +17,8 @@ export class ServerService {
     // so sa there's no listener to responce, there's no reasons to send a request
     // that's why we return this observable
   }
+
+  getServers(){
+        return this.http.get('https://angular5-http-start.firebaseio.com/data.json');
+  }
 }

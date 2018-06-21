@@ -44,6 +44,19 @@ export class AppComponent {
       );
   }
 
+  onGet() {
+    this.serversService.getServers()
+      .subscribe(
+        (response: Response) => {
+          const data = response.json();
+          console.log(data);
+        },
+        (error) => {
+          console.log('Error! ', error);
+        }
+      );
+  }
+
   private generateId() {
     return Math.round(Math.random() * 10000);
   }
