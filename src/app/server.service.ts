@@ -24,6 +24,10 @@ export class ServerService {
       .map(
         (response: Response) => {
           const data = response.json();
+          for (const server of data) {
+            server.name = 'FETCHED!' + server.name;
+            console.log(server.name);
+          }
           return data;
         }
       );
