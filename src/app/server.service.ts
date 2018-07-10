@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http, Response} from '@angular/http';
 import 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable() // this is to make injecting default http angular service injectable
 export class ServerService {
@@ -20,7 +21,7 @@ export class ServerService {
   }
 
   getServers() {
-    return this.http.get('https://angular5-http-start.firebaseio.com/data.json')
+    return this.http.get('https://angular5-http-start.firebaseio.com/data')
       .map(
         (response: Response) => {
           const data = response.json();
@@ -29,6 +30,12 @@ export class ServerService {
             console.log(server.name);
           }
           return data;
+        }
+      )
+      .catch(
+        (error: Response) => {
+          console.log(error);
+          return Observable.throw('Whoops! Looks like something is broken');
         }
       );
   }
