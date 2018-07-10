@@ -21,7 +21,7 @@ export class ServerService {
   }
 
   getServers() {
-    return this.http.get('https://angular5-http-start.firebaseio.com/data')
+    return this.http.get('https://angular5-http-start.firebaseio.com/data.json')
       .map(
         (response: Response) => {
           const data = response.json();
@@ -38,5 +38,14 @@ export class ServerService {
           return Observable.throw('Whoops! Looks like something is broken');
         }
       );
+  }
+
+  getAppName() {
+    return this.http.get('https://angular5-http-start.firebaseio.com/appName.json')
+      .map(
+        (response: Response) => {
+          return response.json()
+        }
+      )
   }
 }
